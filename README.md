@@ -1,5 +1,7 @@
 ![Copertina](Copertina.png)
 
+--
+
 ## GEOPROCESSING IN PYTHON
 
 MASTER IN GISCIENCE E DRONI 2020 - Università di Padova
