@@ -1,8 +1,6 @@
 [![Copertina](Copertina.png)](http://www.mastergiscience.it)
 
-## GEOPROCESSING IN PYTHON
-
-MASTER IN GISCIENCE E DRONI 2020 - Università di Padova
+### GEOPROCESSING IN PYTHON
 
 [(C)2020 CC-BY-SA](https://creativecommons.org/licenses/by-sa/3.0/it/) Enrico Ferreguti enricofer@gmail.com
 
