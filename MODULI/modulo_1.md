@@ -1,8 +1,6 @@
-
-
 ![](CopertinaModulo0.png)
 
---
+---
 
 ![](CopertinaModulo1.png)
 
