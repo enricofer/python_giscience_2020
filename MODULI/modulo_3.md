@@ -213,9 +213,9 @@ conda install <package>
 
 ## requests: 
 
-## django: 
-
 ## pandas: 
+
+## geopandas:
 
 ## jupiter notebooks: 
 
@@ -225,21 +225,14 @@ conda install <package>
 
 1) installazione di anaconda: https://docs.conda.io/en/latest/miniconda.html
 
-2) scaricamento del repository dello jupiter notebook di analisi: https://github.com/pdtyreus/coronavirus-ds
+2) installazione delle librerie necessarie:
 
-3) scaricamento dei dati aggiornati da John Hopkins CSSE: https://github.com/CSSEGISandData/COVID-19
-
-4) installazione delle librerie necessarie:
-
-```
-conda install requests
-conda install pandas
-conda install geopandas
-conda install descartes
+```shell
+conda install requests pandas geopandas descartes
 conda install -c conda-forge jupyterlab
 ```
 
-5) esecuzione jupiter notebook ed aggiornamento dei dati
+3) esecuzione jupiter notebook ed aggiornamento dei dati
 
 
 
