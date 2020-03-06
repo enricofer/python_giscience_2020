@@ -18,27 +18,23 @@ Python è un linguaggio di programmazione potente e divertente, che trova utiliz
 * disponibilità sterminata di librerie immediatamente disponibili (https://pypi.python.org/pypi)
 * usato come linguaggio di *scripting* in molti software
 
----
+--
 
-# RISORSE
+## RISORSE
 
-## Libri
+### Libri
 
 * [Imparare Python, Roberto Allegra](https://www.dropbox.com/s/w35tl07jz9g47xo/Libro_ioProgrammo_122_Imparare_pyton_OK%281%29.pdf?dl=0)
 * [Dive into python3](https://www.dropbox.com/s/cwgj1z3lj80qs3g/dive-into-python3.pdf?dl=0)
 
---
-
-## Tutorial
+### Tutorial
 
 * [Il tutorial ufficiale di Python](http://docs.python.it/html/tut/tut.html)
 * [Pensare da informatico. Versione Python](http://www.python.it/doc/Howtothink/Howtothink-html-it/index.htm)
 * [Dive into Python - Python per programmatori esperti](http://it.diveintopython.net/toc/index.html)
 * [Google Python Course](https://developers.google.com/edu/python/)
 
---
-
-## Riferimenti
+### Riferimenti
 
 * [Cheatsheet - riferimento rapido python 3.5](https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf)
 * [The Hitchhiker’s Guide to Python](https://docs.python-guide.org/ )
