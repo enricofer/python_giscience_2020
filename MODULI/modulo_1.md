@@ -63,7 +63,7 @@ Controlliamo se tutto è a posto. apriamo una finestra di comando e digitiamo il
 
 ## STRUMENTI
 
-In Python l'indentazione delle istruzioni, oltre a rendere più leggibile il codice ha una precisa funzione sintattica. E' quindi necessario disporre di un'editor di testo per programmatori che faciliti l'indentazione evitando situazioni che protrebbero portare ad errori (per esempio mescolare tabulazioni e spazi), oltre a permettere l'evidenziazione della sintassi ed un minimo di introspezione del codice.
+In Python la leggibilità del codice è considerata un valore essenziale [(PEP8)](https://www.python.org/dev/peps/pep-0008/) ed arriva ad attribuire all'indentazione delle istruzioni una precisa funzione sintattica. E' quindi necessario disporre di un'editor di testo per programmatori che faciliti l'indentazione evitando situazioni che protrebbero portare ad errori (per esempio mescolare tabulazioni e spazi), oltre a permettere l'evidenziazione della sintassi ed un minimo di introspezione del codice.
 
 Noi utilizzeremo l'editor [IDLE](https://docs.python.org/3/library/idle.html), realizzato completamente in Pyhton () e che presenta un'interfaccia semplice, una console integrata un debugger semplice studiato dalla comunità Python proprio per finalità educative e che viene installato insieme all'interprete del linguaggio
 
@@ -278,6 +278,14 @@ type(anno)
 <type 'int'>
 ```
 
+--
+# Nomi delle variabili
+
+- ogni nome di variabile deve iniziare con una lettera o con il carattere underscore (_), e può essere seguita da lettere, numeri, o underscore;
+- i nomi delle variabili sono **case_sensitive**, ovvero distingue tra maiscole e minuscole
+- python riserva alcune parole che non possono essere usate come variabili e che hanno un'altro significato nel contesto del programma (for, if, while, class, function ......)
+- 
+
 ---
 
 # I TIPI *STRUTTURATI*
@@ -367,7 +375,7 @@ len(d1)         # 3
 
 ## ESECUZIONE DI UN PROGRAMMA PYTHON
 
-Le istruzioni python possono essere memorizzate  in un file di testo con estensione .py ed essere eseguite in sequenza. L'esecuzione di un file .py può avvenire da riga di comando digitando 
+Le istruzioni Python possono essere memorizzate  in un file di testo con estensione .py ed essere eseguite in sequenza. L'esecuzione di un file .py può avvenire da riga di comando digitando 
 
 ```shell
 python file.py
@@ -375,7 +383,17 @@ python file.py
 
 Usando IDLE il programma può essere eseguito direttamente dall'editor ed il relativo l'output può essere esaminato sulla finestra di shell.
 
-Le istruzioni python sono eseguite sequenzialmente una riga alla volta una dopo l'altra ma il flusso di esecuzione può essere modificato mediante le istruzioni IF / FOR / WHILE / TRY
+Le istruzioni Python sono eseguite sequenzialmente una riga alla volta una dopo l'altra ma il flusso di esecuzione può essere modificato mediante le istruzioni IF / FOR / WHILE / TRY
+
+--
+
+## LEGGIBILITA' DEL CODICE
+
+Come accennato, In Python la leggibilità del codice è un valore fondamentale. Mentre In altri linguaggi l'identificazione dei blocchi di codice che compongono il programma è effettuata con caratteri o parole chiave ( per esempio **{}** parentesi graffe in C++/java/javascript o BEGIN / END in Pascal) in Python questa funzione è svolta dall'indentamento testuale del codice realizzato per mezzo di spaziature o tabulazioni.
+
+Questa caratteristica deve essere gestita con editor adeguati che permettono di non mescolare spazi e tabulazioni ed evitare errori sintattici inaspettati.
+
+Altri aspetti di stile sono poi definiti nella direttiva [(PEP8)] (https://www.python.org/dev/peps/pep-0008/) che non è sintatticamente prescrittiva ma largamente utilizzata negli strumenti di *linting* ovvero i programmi per l'analisi automatica del codice
 
 --
 
@@ -398,11 +416,10 @@ print (zone_letter)
 
 --
 
-## Cicli
+## CICLI
 
 ```python
 #for ELEMENTO in ITERABILE(LIST, DICT)
-
 for carattere in "abcdefg":
     print (carattere)
 
@@ -410,7 +427,6 @@ for numero in [3, 5, 4, 2, 1]:
     print (numero)
 
 #while CONDIZIONE_VERA(TRUE)
-
 testo = "abcdefg"
 while testo:
     testo = testo[:-1]
@@ -427,7 +443,9 @@ e si può saltare un'iterazione con `continue`
 
 Il debugging è una parte dell'attività di programmazione che mira ad individuare, interpretare e risolvere gli errori presenti codice da eseguire. 
 
-In python esistono due tipi di errori:
+L'editor IDLE possiede un semplice **debugger** che consente di eseguire passa-passo di un programma ed analizzare il valore degli oggetti man mano che sono assegnati o modificati.
+
+In Python esistono due tipi di errori:
 
 - errori di sintassi; che impediscono l'esecuzione di un programma
 - errori *runtime* o eccezioni; che avvengono durante lo svolgimento del programma e che possono interrompere il flusso dello stesso o essere gestite per isolare il codice che potenzialmente potrebbe generarle ed adottare strategie alternative mirate.
@@ -483,12 +501,12 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
 --
 
-### Exception handling
+## Exception handling
 
 In Pyhton le eccezioni possono essere gestite e manipolate mediante alcuni potenti comandi predefiniti:
 
 * **raise** consente di creare una eccezione personalizzata e bloccare l'esecuzione del programma
-* **assert** per bloccare in mdo condizionato l'esecuzione di un programma
+* **assert** per bloccare in modo condizionato l'esecuzione di un programma
 * **try except else finally** per eseguire parti di codice in alternativa ad altre che determinano un eccezione
 
 --
@@ -609,7 +627,6 @@ lista = [3,5,2,7,44,6,44,3,46,4,67,23,67,5,3,9,56,23,67,0,1,76,4]
 n = len(lista)
 
 # Attraversa tutti gli elementi della lista
-
 for i in range(n):
 
     # Gli ultimi i elementi
@@ -620,7 +637,6 @@ for i in range(n):
         # il primo elemento è più grande di quello dopo
         if lista[j] > lista[j+1] :
             lista[j], lista[j+1] = lista[j+1], lista[j]
-
 print (lista)
 ```
 
