@@ -9,7 +9,7 @@
 
 ## Funzioni esistenti (o predefinite)
 
-le funzioni in python sono delle azioni di trattamento dei dati definite da un nome e degli argomenti da trattare separati da virgole e racchiusi tra parentesi. Le funzioni possono o meno restituire un valore di risposta.
+le funzioni in python sono delle azioni di trattamento dei dati definite da un nome e degli argomenti da trattare separati da virgole e racchiusi tra parentesi. Le funzioni possono o meno restituire un valore di risposta per mezzo della dichiarazione `return`
 
 ```python
 # Funzioni esistenti (o predefinite)
@@ -72,7 +72,7 @@ locals() #simboli privati accessibili localmente (all'interno di una funzione)
 
 --
 
-## test sui namespaces
+## Test sui namespaces
 
 ```python
 a = 0
@@ -101,9 +101,59 @@ stampa(a, b, c)
 
 --
 
+## Parametri di una funzione
+
+Chiamando una funzione si specificano i parametri necessari per la sua esecuzione. I parametri possono essere obbligatori, o facoltativi, può anche non essere specificato nessun parametro se la funzione non lo richiede.
+
+```
+def funzione1 ():					                 #nessun parametro
+	blocco di codice
+
+def funzione(param1, param2, param3): 				 #parametri obbligatori
+	blocco di codice
+
+def funzione(param1, param2=None, param3="default"): #parametro obbligatorio ed altri 
+													 #parametri facoltativi
+```
+
+Ci si può riferire astrattamente ai parametri di una funzione con `*args` e `**kwargs`
+
+```
+def funzione(*args,**kwargs):
+	print (args)   #si ottiene una lista dei valori
+	print (kwargs) #si ottiene un dizionario parametro=valore
+```
+
+--
+
+## funzioni lambda
+
+In Python possono essere definite delle funzioni anonime al volo, senza necessariamente assegnarle ad un'oggetto. Queste funzioni si chiamano funzioni lambda e possono essere usate come parametro nella programmazione funzionale.
+
+```
+f =  lambda x: x*2
+f(2)
+```
+
+## map reduce filter
+
+Tali funzioni una volta assegnate a delle variabili perdono la loro specificità e non sono altro che delle funzioni definibili con def. Sono utili quando utilizzate nelle funzioni map/reduce/filter
+
+```
+lista = [3, 7, 13, 4, 6]
+nuova_lista1 = list(map(lambda x: x+1, lista)) # restituisce [4, 8, 14, 5, 7]
+nuova_lista2 = list(filter(lambda t: t % 2 ==0, lista)) # restituisce i numeri pari [4,6]
+from functools import reduce
+max = reduce(lambda n,m: m if m>n else n, lista)
+```
+
+
+
+--
+
 ## Moduli
 
-I moduli sono collezioni strutturate ed organizzate di codice python le cui definizioni possono essere importate all'interno di un programma
+I moduli sono collezioni strutturate ed organizzate di codice Python le cui definizioni possono essere importate all'interno di un programma
 
 ```python
 # Importa un modulo con chiamata ad una funzione contenuta
@@ -150,18 +200,24 @@ I Decoratori sono strumenti molto utili in Python che permettono ai programmator
 Nel codice seguente mio_decorator è una funzione *callable* ovvero chiamabile, invocabile, che aggiungerà l'esecuzione di qualche codice all'etto dell'esecuzione della funzione XYZ
 
 ```python
+def mio_decorator(f):
+    def wrapper():
+        print ("prima della funzione")
+        f()
+        print ("dopo lafunzione")
+    return wrapper
+
 @mio_decorator
-    def XYZ():
+def XYZ():
     print ( "XYZ" )
+    
+XYZ()
 ```
 
 ed equivale alla seguente funzione
 
 ```python
-def XYZ(): 
-    print("XYZ") 
-
-hello_decorator = mio_decorator(hello_decorator)
+mio_decorator(XYZ)
 ```
 
 --
@@ -423,21 +479,18 @@ text_file.close()
 
 [esercitazione2.py](py/esercitazione2.py)
 
-```python
-
 
 
 --
 
 ## Lettura
 
-​```python
+```python
 '''
 CORSO DI GEOPROCESSING - MASTER IN GISSCIENCE
 lettura di una stringa da un file di testo
 '''
 
-import os
 #from esercitazione2 import destinazione
 destinazione = r"C:\temp\"
 
