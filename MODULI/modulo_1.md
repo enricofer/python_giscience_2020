@@ -412,6 +412,24 @@ print (zone_letter)
 
 --
 
+## Assegnazione condizionata
+
+Molte volte, come nel caso precedente, if/then/else serve a definire delle variabili a partire da una condizione. Python ci viene in aiuto consentendo di assegnare un variabile in modo condizionato. Il codice precedente può essere trasformato in una notazione molto più sintetica e concisa:
+```python
+latitude = 51.5
+zone_letter = 'N' if latitude >= 0 else 'S'
+print (zone_letter)
+```
+Un'altro tipo di assegnazione condizionata è basata sul funzionamento di or/and con il false esteso ai valori nulli. Nell'esempio successivo l'assegnazione del secondo valore dell'espressione or è condizionata dal fatto che la prima variabile non deve essere False/None/0/[]/{}
+```python
+a = None
+b = a or "valore di default"
+c = a or []
+```
+Come già affermato Python non è staticamente tipizzato e queste forme *idiomatiche* vengono incontro al programmatore per manipolare oggetti di cui a priori non si conosce il tipo od il contenuto
+
+--
+
 ## CICLI
 
 ```python
@@ -428,6 +446,8 @@ while testo:
     testo = testo[:-1]
     print (testo)
 ```
+
+si può generare una sequenza numerica con `range(start,end)`
 
 un ciclo può essere interrotto con `break`
 
