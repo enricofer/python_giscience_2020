@@ -149,31 +149,6 @@ max = reduce(lambda n,m: m if m>n else n, lista)
 
 
 
---
-
-## Moduli
-
-I moduli sono collezioni strutturate ed organizzate di codice Python le cui definizioni possono essere importate all'interno di un programma
-
-```python
-# Importa un modulo con chiamata ad una funzione contenuta
-import math
-math.floor(10.6)
-
-# Importa singoli elementi da un modulo
-from os import path
-path.join('C:', 'Utenti', 'paolo', 'documenti')
-'C:/Utenti/paolo/documenti'
-```
-
-l'organizzazione modulare è una delle caratteristiche del linguaggio. I moduli possono essere:
-
-* predefiniti, già compresi nella [dotazione di base del linguaggio](https://docs.python.org/3/library/index.html)
-* esterni, contenuti nei path di sistema di Python (PATH, PYTHONPATH). Possono essere preimportati o [importati da internet](https://pypi.python.org/pypi?%3Aaction=browse) tramite pip/setuptools
-* definiti localmente dall'utente in altri files python
-
-
-
 ---
 
 ## Decoratori
@@ -391,6 +366,144 @@ hasattr(oggetto,'membro')
 ```
 
 ---
+
+## Moduli
+
+I moduli sono collezioni strutturate ed organizzate di codice Python le cui definizioni possono essere importate all'interno di un programma
+
+```python
+# Importa un modulo con chiamata ad una funzione contenuta
+import math
+math.floor(10.6)
+
+# Importa singoli elementi da un modulo
+from os import path
+path.join('C:', 'Utenti', 'paolo', 'documenti')
+'C:/Utenti/paolo/documenti'
+```
+
+l'organizzazione modulare è una delle caratteristiche del linguaggio. I moduli possono essere:
+
+* predefiniti, già compresi nella [dotazione di base del linguaggio](https://docs.python.org/3/library/index.html)
+* esterni, contenuti nei path di sistema di Python (PATH, PYTHONPATH). Possono essere preimportati o [importati da internet](https://pypi.python.org/pypi?%3Aaction=browse) tramite pip/setuptools
+* definiti localmente dall'utente in altri files python
+
+--
+
+## Il modulo`math`
+
+https://docs.python.org/3/library/math.html
+
+```
+import math
+
+math.floor(10.6) # troncamento al numero intero inferiore 
+math.ceil(10.6) # troncamento al numero intero superiore 
+
+math.pi # PI greco
+math.cos(2*math.pi)
+math.degrees(math.pi)
+
+math.isclose(math.sin(0),0) #confronta numeri decimali con approssimazione
+```
+
+--
+
+## Il modulo`os` e `os.path`
+
+https://docs.python.org/3/library/os.path.html#os.path.split
+
+```python
+import os
+
+path = os.path.join("c:/","OSGeo4W64","OSGeo4W.bat")
+path = os.path.dirname(__file__)
+dirpath = os.path.dirname(path)
+os.path.split(path) separa il nome della directory dal file
+os.path.splitext(path) separa il file (path completo) dall'estensione
+
+os.remove(path) #cancella il file puntato da path
+os.listdir(dirpath) #lista il contenuto di una directory 
+os.makedirs(path) #crea il path completo
+```
+
+--
+
+## Il modulo `json`
+
+https://www.w3schools.com/python/python_json.asp
+
+https://www.json.org/
+
+### serializzazione dei dati
+
+```python
+import json
+bib = {
+    "biblioteca": "centrale"
+    "libri": [
+        {
+            "autore": "Dante", 
+            "titolo": "Divina Commedia"
+        },{
+            "autore": "Manzoni", 
+            "titolo": "Promessi Sposi"
+        },
+    ]
+}
+
+print (json.dumps(bib))
+```
+
+--
+
+### decodifica dei dati
+
+webscraping: con un browser copiare ed incollare la seguente url:
+
+`https://it.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=python`
+
+Possiamo analizzare la risposta e copiare ed incollare il testo json in formato RAW
+
+```python
+import json
+scraped_txt = """.....""" #incolliamo il testo tra tripli apici in modo da evitare errori 
+
+scraped_dict = json.loads(scraped_txt)
+
+for search in scraped_dict["query"]["search"]:
+    print(search["title"])
+```
+
+--
+
+## Il modulo `http`
+
+si può automatizzare la procedura usando la libreria [`http`](https://docs.python.org/3/library/http.client.html#httpconnection-objects)
+
+```python
+import http.client
+import json
+termine_di_ricerca= "python"
+
+#connessione e lettura dei dati
+url = '/w/api.php?action=query&format=json&list=search&srsearch=' + termine_di_ricerca
+connessione = http.client.HTTPSConnection("it.wikipedia.org")
+connessione.request("GET",url)
+risposta = connessione.getresponse()
+scraped = risposta.read()
+
+#decodifica
+ricerca = json.loads(scraped)
+for search in ricerca["query"]["search"]:
+    print(search["title"])
+```
+
+... ma è più comodo il modulo esterno [requests](https://requests.readthedocs.io/projects/it/it/latest/)
+
+---
+
+
 
 # Esercitazione 1
 

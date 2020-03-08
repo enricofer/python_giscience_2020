@@ -358,8 +358,8 @@ len(l1 + l2)    # 5
 
 d1["cognome"] = 'verdi'
 d1["anni"] = 60 # {"nome":"giuseppe","anni":60,"cognome":"verdi"}
-d1.keys()       # ["cognome", "anni", "nome"]
-d1.values()     # ["verdi", 60, "giuseppe"]
+list(d1.keys())       # ["cognome", "anni", "nome"]
+list(d1.values())     # ["verdi", 60, "giuseppe"]
 len(d1)         # 3
 ```
 
@@ -570,6 +570,8 @@ for i in range(1, x + 1):
 --
 
 ### TEST NUMERO PRIMO
+
+sfrutta la forma [for/else](https://book.pythontips.com/en/latest/for_-_else.html#for-else) introdotta con Pyhton3 e che prevede l'esecuzione del blocco else: nel caso idi uscita regolare dal ciclo (ovvero non interrotta da break)
 
 ```python
 num = 407
