@@ -203,21 +203,195 @@ Anaconda può essere installato da quasta pagina: https://docs.conda.io/projects
 
 ```shell
 conda install <package>
+conda uninstall <package>
+conda search
+conda list
 ```
-
-
 
 ---
 
 # MODULI ESTERNI
 
-## requests: 
+---
 
-## pandas: 
+## Jupyter notebooks: 
 
-## geopandas:
+[https://jupyter.org/](https://jupyter.org/)
 
-## jupiter notebooks: 
+E' un sistema per lo sviluppo e la generazione di "notebook" in Ipython, dei fogli di appunti autocommentati ed interattivi programmabili in Python.  E' ormai uno standard nel mondo scientifico per la presentanzione e la documentazione scientifica ed è uno strumento utilissimo per la formazione perchè consente di verificare passo passo i risultati di blocchi di codice.
+
+Ma per capire cos'è Jupyter notebooks e cosa ci si può fare è utile dare un'occhiata a qualche repository di notebooks per esaminare l'ambiente operativo in cui ci troveremo a lavorare, per esempio l'ottimo Earthpy dedicato alle geoscience: http://earthpy.org/
+
+--
+
+## Installazione di Jupyter Notebooks
+
+[https://jupyter.org/install](https://jupyter.org/install)
+
+L'applicazione può essere installata sia con `pip` che con `anaconda`  ma, soprattutto se ci si trova in windows, la procedura è molto più semplice e senza complicazioni usando anaconda. Da riga di comando di anaconda possiamo digitare:
+
+```shell
+> conda install -c conda-forge notebook
+```
+
+una volta finita la procedura di installazione jupyter notebooks può essere attivato con il comando:
+
+```
+> jupyter notebook
+```
+
+--
+
+![](doc\jupyter_console.png)
+
+![](doc\jupyter_browse.png)
+
+--
+
+## Jupyter. L'ambiente operativo
+
+Una volta avviato con il comando `jupyter notebook` l'applicazione attiva un'interfaccia web per il dialogo con l'utente da cui si può sfogliare il contenuto del disco locale del computer per caricare files, programmi e notebook
+
+I notebook jupyter possono essere registrati come files con estensione .ipynb e possono essere creati da zero cliccando sul pulsante **New** e poi su ***Notebook Python 3*** . Ci troviamo di fronte ad una finestra di esecuzione di comandi di python avviabili con il tasto **Run**
+
+![](doc\jupyter_new.png)
+
+--
+
+## Jupyter Notebooks in rete
+
+I notebooks sono uno strumento potentissimo di comunicazione scientifica ed educativa.
+Esistono in rete moltissimi repository di notebooks cho possono essere visualizzati o addirittura eseguiti su un server remoto (scarse performance e talvolta affollamento dei server) oppure scaricati localmente per essere eseguiti dalla sessione di jupyter notebook avviata sul nostro computer:
+
+[Notebooks Generali dedicati alla programmazione python](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#general-python-programming)
+
+altri notebooks più specifici possono essere eseguiti localmente installando i moduli necessari tramite conda
+
+[Notebooks sulle geoscienze](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#earth-science-and-geo-spatial-data)
+
+[Notebooks sulla manipolazione di dati](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#pandas-for-data-analysis)
+
+[Notebooks su grafici e comunicazione di risultati](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#data-visualization-and-plotting)
+
+[Notebooks su Statistica, machine learning, etc](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#statistics-machine-learning-and-data-science)
+
+--
+
+## Esercitazione: tabelline con Jupyter Notebook
+
+Attivare notebook, iniziare un nuovo progetto e salvarlo con nome
+
+riga1: definire la struttura dati che contiene i calcoli
+
+```
+tab = []
+for num_c in range (1,11):
+    row = []
+    for num_r in range (1,11):
+        row.append(num_c*num_r)
+    tab.append(row)
+```
+
+riga2: output in html
+
+```
+output = "<table>"
+for riga in tab:
+    output += "<tr>"
+    for col in riga:
+        output += "<td>%d</td>" % col
+    output += "</tr>"
+output += "</table>"
+```
+
+riga3: formattiamo l'output
+
+```
+from IPython.display import display_html
+display_html(output,raw=True)
+```
+
+ulteriori elaborazioni:  stampiamo con titoli in grassetto ed in markdown
+
+[notebook finale](py/tables_nb.ipynb)
+
+
+
+---
+
+## Requests:  *http for humans*
+
+https://requests.readthedocs.io/projects/it/it/latest/
+
+Il modulo requests permette facili connessioni ad internet con il [protocollo http](https://it.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+
+> Il modulo urllib2 della libreria standard Python mette a disposizione quasi tutte le principali funzionalità HTTP ma la sua interfaccia è molto frastagliata. Quel modulo è stato creato per tempi diversi - e un web diverso. Serve molto lavoro (addirittura anche l’overriding di metodi) per realizzare il più semplice dei task.
+
+installazione
+
+```
+pip install requests
+```
+
+```
+conda install requests
+```
+
+--
+
+## Http - GET e POST
+
+```
+import requests
+risposta = requests.get('https://api.github.com/events')
+if risposta.status_code == 200:
+	print (risposta.text) #output in formato text
+	print (risposta.encoding) #codifica dell'output	
+```
+
+```
+parametri =  {'chiave1': 'valore1', 'chiave2': 'valore2'}
+risposta = requests.get("http://httpbin.org/get", params=parametri)
+print (risposta.url)
+print (risposta.text) #output in formato text		
+```
+
+```
+payload =  {'key1': 'value1', 'key2': 'value2'}
+risposta = requests.post("http://httpbin.org/post", data=payload )
+print (risposta.url)
+print (risposta.text) #output in formato text
+```
+
+--
+
+## Esercitazione elaboriamo in python informazioni da wikipedia
+
+Wikipedia possiede un'interfaccia di programmazione (API, *Application Programming Interface*) che permette di interfacciarsi con gli aspetti operativi del sito web: https://www.mediawiki.org/wiki/API:Main_page/it
+
+Fra le altre cose è possibile effettuare [query ](https://www.mediawiki.org/wiki/API:Lists) sui contenuti con un'url simile a questa:
+
+http://it.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=python
+
+quindi scriviamo un jupyter notebook per lo scaricamento e l'elaborazione di dati scaricati da wikipedia usando il modulo requests per la connessione e l'interrogazione ed il modulo json per la decodifica
+
+---
+
+## pandas 
+
+https://pandas.pydata.org/docs/reference/index.html
+
+Pandas è un modulo per l' importazione e la manipolazione di dati tabellari molto utilizzato nell'analisi dei dati e per lo "scraping" di dati da fonti diverse
+
+https://www.datacamp.com/community/tutorials/pandas-tutorial-dataframe-python
+
+## geopandas
+
+https://geopandas.org/
+
+Geopandas è un'estensione di pandas per associare ai dati tabellari un campo geometrico. Si possono inoltre gestire operazioni sulle geometrie (predicati geospaziali ed operazioni topologiche) e produrre grafici tematici in output.
+
+https://raw.githubusercontent.com/jorisvandenbossche/geopandas-tutorial/master/01-introduction-geospatial-data.ipynb
 
 ---
 
@@ -228,13 +402,112 @@ conda install <package>
 2) installazione delle librerie necessarie:
 
 ```shell
-conda install requests pandas geopandas descartes
-conda install -c conda-forge jupyterlab
+> conda install requests pandas geopandas descartes
+> conda install -c conda-forge jupyterlab
 ```
 
 3) esecuzione jupiter notebook ed aggiornamento dei dati
 
+```shell
+> jupyter notebook
+```
 
+--
+
+## Analisi dati covid19 delle provincie italiane
+
+i dati grezzi sono scaricati dai seguenti repository:
+
+- dati aggiornati sull'infezione dal repository della protezione civile: https://github.com/pcm-dpc/COVID-19
+- dati geografici sui confini amministrativi dal repository di openpolis: https://github.com/openpolis
+
+### Importazione dei dati sull'infezione in un dataframe pandas
+
+```
+import pandas
+from datetime import datetime, timedelta
+
+cv_df = pandas.read_csv("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv",parse_dates=['data'])
+latest = cv_df['data'].max()
+first = cv_df['data'].min()
+before_latest = latest - timedelta(days=1)
+print (first,latest,before_latest)
+cv_df
+```
+
+--
+
+### Filtro dei risultati per campo regione e per l'ultimo giorno di aggiornamento
+
+```
+from datetime import datetime
+regione = "Piemonte"
+cv_df_target = cv_df.loc[cv_df["data"]==latest]
+cv_df_target = cv_df_target.loc[cv_df_target["denominazione_regione"] == regione]
+cv_df_target.head()
+```
+
+### Generazione di un grafico a barre dei dati aggiornati
+
+```
+import matplotlib
+
+ax = cv_df_target.plot.bar(x='denominazione_provincia', y='totale_casi', figsize=(16, 7))
+ax.set_title(str(latest) + ' - casi in terapia intensiva')
+```
+
+
+
+--
+
+### Importazione dei limiti amministrativi delle provincie italiane in un dataframe geopandas
+
+```
+import geopandas
+
+geo_df = geopandas.read_file("https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson")
+geo_df.crs = "EPSG:4326"
+geo_df.head()
+```
+
+### Merge dei dati precedentemente processati
+
+```python
+cv_df_geo = geo_df.merge(cv_df_target, left_on='prov_acr', right_on='sigla_provincia')
+cv_df_geo.head()
+```
+
+
+
+--
+
+## Visualizzazione di una carta tematica
+
+```python
+import descartes
+
+cv_df_geo.plot(column="totale_casi", cmap='OrRd', edgecolor = "lightgrey", linewidth = 0.5, figsize=(18, 8))
+```
+
+## Generazione di un grafico della progressione temportale dei casi
+
+```
+cv_pro1 = "Torino"
+cv_df_progress1 = cv_df.loc[cv_df["denominazione_provincia"]==cv_pro1]
+
+cv_pro2 = "Padova"
+cv_df_progress2 = cv_df.loc[cv_df["denominazione_provincia"]==cv_pro2]
+cv_df_progress2.head()
+```
+
+```
+ax = cv_df_progress1.plot(x='data', y='totale_casi', figsize=(16, 7))
+ax = cv_df_progress2.plot(ax = ax, x='data', y='totale_casi', figsize=(16, 7))
+ax.set_title('%s e %s - totale casi' % (cv_pro1,cv_pro2))
+ax.legend((cv_pro1, cv_pro2))
+```
+
+[Notebook finale](py/COVID19_datiPC.ipynb)
 
 ---
 
