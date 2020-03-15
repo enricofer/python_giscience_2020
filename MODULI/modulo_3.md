@@ -242,9 +242,9 @@ una volta finita la procedura di installazione jupyter notebooks può essere att
 
 --
 
-![](doc\jupyter_console.png)
+![](doc/jupyter_console.png)
 
-![](doc\jupyter_browse.png)
+![](doc/jupyter_browse.png)
 
 --
 
@@ -254,7 +254,7 @@ Una volta avviato con il comando `jupyter notebook` l'applicazione attiva un'int
 
 I notebook jupyter possono essere registrati come files con estensione .ipynb e possono essere creati da zero cliccando sul pulsante **New** e poi su ***Notebook Python 3*** . Ci troviamo di fronte ad una finestra di esecuzione di comandi di python avviabili con il tasto **Run**
 
-![](doc\jupyter_new.png)
+![](doc/jupyter_new.png)
 
 --
 
