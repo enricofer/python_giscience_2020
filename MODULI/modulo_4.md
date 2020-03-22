@@ -732,9 +732,11 @@ Per saperne di più: [CSS Selectors in w3schools](http://www.w3schools.com/cssre
 
 Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effettivamente aggiunto un po' di CSS. Apriamo il file `blog/templates/blog/post_list.html` e aggiungiamo la seguente riga di testo:
 
+
 ```
-{% load static %}
+{% raw %}{% load static %}{% endraw %}
 ```
+
 
 Per ora stiamo solamente caricando tutti i nostri static files :). Aggiungiamo questa riga nell'heading, subito dopo il link al file CSS di Bootstrap (il browser legge i file  nell'ordine in cui sono dati, in questo modo il codice nei nostri files può  sovrascrivere il codice presente nei files di Bootstrap):
 
