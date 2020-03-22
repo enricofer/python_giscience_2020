@@ -1,4 +1,4 @@
-{% raw %}
+
 ![](CopertinaModulo4.png)
 
 ---
@@ -26,7 +26,7 @@
 
 Il progetto è sviluppato dalla "Django Software Foundation" (DSF), un'organizzazione indipendente senza scopo di lucro.[[1\]](https://it.wikipedia.org/wiki/Django_(informatica)#cite_note-1) Venne concepito inizialmente per gestire diversi siti di notizie per la World Company di [Lawrence (Kansas)](https://it.wikipedia.org/wiki/Lawrence_(Kansas)), e distribuito con una [licenza BSD](https://it.wikipedia.org/wiki/Licenza_BSD) a luglio [2005](https://it.wikipedia.org/wiki/2005).
 
-
+{% raw %}
 
 --
 
@@ -63,9 +63,15 @@ Il progetto è sviluppato dalla "Django Software Foundation" (DSF), un'organizza
 
 Documentazione: https://docs.djangoproject.com/en/3.0/
 
+Guida a django1/python2.4: https://www.dropbox.com/s/6me9625p3h7p6mb/djangobook.pdf?dl=0
+
 Tutorial Djangogirls: https://tutorial.djangogirls.org/it/
 
 Tutorial Mozilla: https://developer.mozilla.org/it/docs/Learn/Server-side/Django
+
+Editor di testo: https://www.geany.org/download/releases/
+
+Python package installer: https://www.anaconda.com/distribution/
 
 
 
@@ -1108,4 +1114,5 @@ Solo aggiungendo i css e gli script consigliati da bootstrap la grafica migliora
 ## Questa esercitazione
 
 E' disponibile per scaricamento da: [django_miosito.zip](doc/django_miosito.zip)
+
 {% endraw %}
