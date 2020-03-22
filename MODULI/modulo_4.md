@@ -255,9 +255,9 @@ INSTALLED_APPS = [
 
 
 
---
+---
 
-### Creazione di un modello blog post
+## Definizione del modello di dati Django
 
 Nel file `blog/models.py` definiamo tutti gli oggetti chiamati `Models` - Questo è il posto dove definiremo il nostro blog post.
 
@@ -271,7 +271,7 @@ Modelli in django: https://docs.djangoproject.com/en/3.0/topics/db/models/
 
 --
 
-### Definizione del modello di dati Django
+### Creazione di un modello blog post
 
 Apriamo `blog/models.py`, e sostituiamo il codice esistente con il seguente:
 
@@ -630,7 +630,7 @@ il risultato non è ancora quello che ci aspettiamo da un blog, ma ci stiamo avv
 
 ## Template engine
 
-Un template è una pagina html con inframmezzati alcuni **template tags** che servono per interagire con il motore dei templates di django. Andiamo a creare un nuovo template nella cartella `blog/templates/blog/post_list.html` andando a creare le cartelle mancanti qualora non fossero ancora state generate.
+Un template è una pagina html con inframmezzati alcuni **template tags** che servono per interagire con il motore dei templates di django. Andiamo a creare un nuovo template nella cartella `blog/templates/post_list.html` andando a creare le cartelle mancanti qualora non fossero ancora state generate.
 
 ```django
 <html>
@@ -738,7 +738,7 @@ Per saperne di più: [CSS Selectors in w3schools](http://www.w3schools.com/cssre
 
 ### Files statici e templates
 
-Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effettivamente aggiunto un po' di CSS. Apriamo il file `blog/templates/blog/post_list.html` e aggiungiamo la seguente riga di testo:
+Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effettivamente aggiunto un po' di CSS. Apriamo il file `blog/templates/post_list.html` e aggiungiamo la seguente riga di testo:
 
 
 ```
@@ -793,7 +793,7 @@ def post_detail(request,id=None):
         "blog_title": "Il mio blog in Django" ,
         "post": detail
     }
-	return render(request, "blog/post_detail.html", parameters)
+	return render(request, "post_detail.html", parameters)
 ```
 
 Ovviamente dovremo realizzare un nuovo template per la rappresentazione del post di dettaglio ed includere un link alla pagina di dettaglio dalla lista dei post.
@@ -859,7 +859,7 @@ I due template condividono alcune parti del codice, per esempio l'header e sareb
 ed andiamo a modificare `post_list.html` in modo da riusare il codice del template base:
 
 ```django
-{% extends 'blog/blog_base.html' %}
+{% extends 'blog_base.html' %}
 {% block content %}
 	{% for post in posts %}
 		<a href="/blog/{{ post.pk }}/"><h2>{{ post.title }}</h2></a>
@@ -917,7 +917,7 @@ from .forms import PostForm
 ```python
 def post_new(request):
     form = PostForm()
-    return render(request, 'blog/post_form.html', {'form': form})
+    return render(request, 'post_form.html', {'form': form})
 ```
 
 Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e passarlo nel nostro template. Torneremo poi sulla *view*, ma per ora creiamo un veloce template per il nostro form.
@@ -934,7 +934,7 @@ Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e pass
 - infine, subito dopo l'apertura del tag ``, dobbiamo aggiungere ` {% csrf_token %}`. Questo passaggio è molto importante dal momento che rende il nostro  [form sicuro.](https://docs.djangoproject.com/en/3.0/ref/csrf/)
 
 ```django
-{% extends 'blog/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <h2>Nuovo Post</h2>
@@ -969,7 +969,7 @@ def post_new(request):
 			return post_detail(request, id=post.pk)
 	else:
 		form = PostForm()
-		return render(request, 'blog/post_form.html', {'form': form})
+		return render(request, 'post_form.html', {'form': form})
 ```
 
 
@@ -978,7 +978,7 @@ def post_new(request):
 
 ### Modificare un post
 
-Potremmo modificare un post aggiungendo una view post_edit che prepapara il form con i dati del post indicato caricati direttamente dal modello. Modifichiamo `blog/urls.py` e `blog.views.py` aggiungendo la logica necessaria:
+Potremmo modificare un post aggiungendo una view post_edit che prepapara il form con i dati del post indicato caricati direttamente dal modello. Modifichiamo `blog/urls.py` e `blog/views.py` aggiungendo la logica necessaria:
 
 ```
     path('edit/<int:id>/', views.post_edit, name="post_edit"),
@@ -996,7 +996,7 @@ def post_edit(request, id):
             return post_detail(request, id=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_form.html', {'form': form})
+    return render(request, 'post_form.html', {'form': form})
 ```
 
 ed andiamo ad inserire un link per la modifica nel template `post_detail.html`
@@ -1063,7 +1063,7 @@ Infatti i template di visualizzazione non sono forniti e devono essere manualmen
 Django fornisce solo la logica di autenticazione demandando allo sviluppatore la configurazione dei template di login. Nel nostro caso andremo a creare una sottocartella `blog/templates/registration` dentro cui andremo a creare un file di template `login.html` 
 
 ```django
-{% extends 'blog/blog_base.html' %}
+{% extends 'blog_base.html' %}
 
 {% block content %}
 
