@@ -926,12 +926,12 @@ Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e pass
 
 ### Form Template 
 
+{% raw %}
 - dobbiamo rendere il form visibile. Per farlo possiamo usare semplicemente `{{ form.as_p }}`.
 - le righe scritte sopra hanno bisogno di 'essere avvolte' da un HTML tag: `...`
 - ci serve un `Save` pulsante. Possiamo fare ciò con HTML button: `Save`
 - infine, subito dopo l'apertura del tag ``, dobbiamo aggiungere ` {% csrf_token %}`. Questo passaggio è molto importante dal momento che rende il nostro  [form sicuro.](https://docs.djangoproject.com/en/3.0/ref/csrf/)
 
-{% raw %}
 ```django
 {% extends 'blog/base.html' %}
 
