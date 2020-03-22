@@ -732,13 +732,13 @@ Per saperne di più: [CSS Selectors in w3schools](http://www.w3schools.com/cssre
 
 Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effettivamente aggiunto un po' di CSS. Apriamo il file `blog/templates/blog/post_list.html` e aggiungiamo la seguente riga di testo:
 
-```html
+```django
 {% load static %}
 ```
 
 Per ora stiamo solamente caricando tutti i nostri static files :). Aggiungiamo questa riga nell'heading, subito dopo il link al file CSS di Bootstrap (il browser legge i file  nell'ordine in cui sono dati, in questo modo il codice nei nostri files può  sovrascrivere il codice presente nei files di Bootstrap):
 
-```html
+```django
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 ```
 
@@ -796,7 +796,7 @@ Ovviamente dovremo realizzare un nuovo template per la rappresentazione del post
 
 Prima di scrivere il template di dettaglio possiamo inserire un link nel template lista dei post in modo da avere un link diretto alla pagina di dettaglio direttamente dal blog. Modifichiamo la riga relativa titolo facendola diventare un link alla pagina di dettaglio e e creiamo un nuovo template:
 
-```
+```django
 <a href="/blog/{{ post.pk }}/"><h2>{{ post.title }}</h2></a>
 ```
 
@@ -920,7 +920,7 @@ Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e pass
 - ci serve un `Save` pulsante. Possiamo fare ciò con HTML button: `Save`
 - infine, subito dopo l'apertura del tag ``, dobbiamo aggiungere ` {% csrf_token %}`. Questo passaggio è molto importante dal momento che rende il nostro  [form sicuro.](https://docs.djangoproject.com/en/3.0/ref/csrf/)
 
-```
+```django
 {% extends 'blog/base.html' %}
 
 {% block content %}
@@ -1048,7 +1048,7 @@ Infatti i template di visualizzazione non sono forniti e devono essere manualmen
 
 Django fornisce solo la logica di autenticazione demandando allo sviluppatore la configurazione dei template di login. Nel nostro caso andremo a creare una sottocartella `blog/templates/registration` dentro cui andremo a creare un file di template `login.html` 
 
-```
+```django
 {% extends 'blog/blog_base.html' %}
 
 {% block content %}
