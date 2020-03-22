@@ -12,6 +12,6 @@
 
 * [Modulo 3: moduli, gestione dei pacchetti e strumenti di collaborazione](https://enricofer.github.io/python_giscience_2020/MODULI/modulo_3.htm)
 
-* [Modulo 4: moduli, django framework](https://enricofer.github.io/python_giscience_2020/MODULI/modulo_4.htm)
+* [Modulo 4: django framework](https://enricofer.github.io/python_giscience_2020/MODULI/modulo_4.htm)
 
   
