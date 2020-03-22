@@ -737,12 +737,13 @@ Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effetti
 {% raw %}{% load static %}{% endraw %}
 ```
 
-
 Per ora stiamo solamente caricando tutti i nostri static files :). Aggiungiamo questa riga nell'heading, subito dopo il link al file CSS di Bootstrap (il browser legge i file  nell'ordine in cui sono dati, in questo modo il codice nei nostri files può  sovrascrivere il codice presente nei files di Bootstrap):
 
+{% raw %}
 ```django
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 ```
+{% endraw %}
 
 Stiamo dicendo al nostro template dove trovare i nostri file CSS.
 
@@ -798,9 +799,11 @@ Ovviamente dovremo realizzare un nuovo template per la rappresentazione del post
 
 Prima di scrivere il template di dettaglio possiamo inserire un link nel template lista dei post in modo da avere un link diretto alla pagina di dettaglio direttamente dal blog. Modifichiamo la riga relativa titolo facendola diventare un link alla pagina di dettaglio e e creiamo un nuovo template:
 
+{% raw %}
 ```django
 <a href="/blog/{{ post.pk }}/"><h2>{{ post.title }}</h2></a>
 ```
+{% endraw %}
 
 ```django
 {% load static %}
