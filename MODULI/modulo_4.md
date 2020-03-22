@@ -1,3 +1,4 @@
+{% raw %}
 ![](CopertinaModulo4.png)
 
 ---
@@ -625,7 +626,6 @@ il risultato non è ancora quello che ci aspettiamo da un blog, ma ci stiamo avv
 
 Un template è una pagina html con inframmezzati alcuni **template tags** che servono per interagire con il motore dei templates di django. Andiamo a creare un nuovo template nella cartella `blog/templates/blog/post_list.html` andando a creare le cartelle mancanti qualora non fossero ancora state generate.
 
-{% raw %}
 ```django
 <html>
     <head><title>{{ blog_title }}</title></head>
@@ -639,7 +639,7 @@ Un template è una pagina html con inframmezzati alcuni **template tags** che se
     </body>
 </html>
 ```
-{% endraw %}
+
 
 Vediamo come dentro il codice html abbiamo inserito alcuni contenuti speciali racchiusi da doppie parentesi graffe `{{ blog_title }}` che rappresentano contenuti di dati ed altri racchiusi da parantesi graffe e percentuali `{% for post in posts %}` che rappresentano delle direttive.
 
@@ -736,16 +736,15 @@ Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effetti
 
 
 ```
-{% raw %}{% load static %}{% endraw %}
+{% load static %}
 ```
 
 Per ora stiamo solamente caricando tutti i nostri static files :). Aggiungiamo questa riga nell'heading, subito dopo il link al file CSS di Bootstrap (il browser legge i file  nell'ordine in cui sono dati, in questo modo il codice nei nostri files può  sovrascrivere il codice presente nei files di Bootstrap):
 
-{% raw %}
 ```django
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 ```
-{% endraw %}
+
 
 Stiamo dicendo al nostro template dove trovare i nostri file CSS.
 
@@ -801,7 +800,6 @@ Ovviamente dovremo realizzare un nuovo template per la rappresentazione del post
 
 Prima di scrivere il template di dettaglio possiamo inserire un link nel template lista dei post in modo da avere un link diretto alla pagina di dettaglio direttamente dal blog. Modifichiamo la riga relativa titolo facendola diventare un link alla pagina di dettaglio e e creiamo un nuovo template:
 
-{% raw %}
 ```django
 <a href="/blog/{{ post.pk }}/"><h2>{{ post.title }}</h2></a>
 ```
@@ -827,7 +825,7 @@ Prima di scrivere il template di dettaglio possiamo inserire un link nel templat
     </body>
 </html>
 ```
-{% endraw %}
+
 
 
 --
@@ -836,7 +834,6 @@ Prima di scrivere il template di dettaglio possiamo inserire un link nel templat
 
 I due template condividono alcune parti del codice, per esempio l'header e sarebbe utile scrivere una sola volta tali parti e fare in modo che gli altri template possano riusarle. Per fare questo creiamo un nuovo template `blog_base.html` che contiene la definizione della pagina:
 
-{% raw %}
 ```django
 {% load static %}
 <html>
@@ -851,11 +848,10 @@ I due template condividono alcune parti del codice, per esempio l'header e sareb
     </body>
 </html>
 ```
-{% endraw %}
+
 
 ed andiamo a modificare `post_list.html` in modo da riusare il codice del template base:
 
-{% raw %}
 ```django
 {% extends 'blog/blog_base.html' %}
 {% block content %}
@@ -866,7 +862,7 @@ ed andiamo a modificare `post_list.html` in modo da riusare il codice del templa
 	{% endfor %}
 {% endblock %}
 ```
-{% endraw %}
+
 
 e facciamo la stessa operazione per `post_detail.html`
 
@@ -926,7 +922,6 @@ Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e pass
 
 ### Form Template 
 
-{% raw %}
 - dobbiamo rendere il form visibile. Per farlo possiamo usare semplicemente `{{ form.as_p }}`.
 - le righe scritte sopra hanno bisogno di 'essere avvolte' da un HTML tag: `...`
 - ci serve un `Save` pulsante. Possiamo fare ciò con HTML button: `Save`
@@ -943,7 +938,7 @@ Per creare un nuovo `Post` form, dobbiamo chiamare il metodo `PostForm()` e pass
     </form>
 {% endblock %}
 ```
-{% endraw %}
+
 non ci resta che aggiungere un link in template base per aggiungere un nuovo post:
 
 
@@ -1008,7 +1003,6 @@ ed andiamo ad inserire un link per la modifica nel template `post_detail.html`
 
 Django possiede un sottosistema (*middleware*) che si occupa della gestione dell'autenticazione e dei permessi di accesso alle risorse servite.  Come prima cosa andremo a proteggere le view che danno accesso alle modifiche sul database autorizzando solo gli utenti autenticati. Qualora l'utente corrente non sia autenticato si verrà ridirezionati su una form di login. Modifichiamo blog/views.py importando il modulo necessario e modifichiamo le viste da proteggere
 
-{% raw %}
 ```
 from django.contrib.auth.decorators import login_required
 ....
@@ -1018,7 +1012,7 @@ def post_new(request):
 @login_required
 def post_edit(request):
 ```
-{% endraw %}
+
 
 Il decoratore `@login_required` permette l'accesso agli utenti autenticati e redireziona gli utenti anonimi su `/accounts/login/` negando la pagina con il form di editing.
 
@@ -1061,7 +1055,7 @@ Infatti i template di visualizzazione non sono forniti e devono essere manualmen
 ### Aggiungere i template di autenticazione
 
 Django fornisce solo la logica di autenticazione demandando allo sviluppatore la configurazione dei template di login. Nel nostro caso andremo a creare una sottocartella `blog/templates/registration` dentro cui andremo a creare un file di template `login.html` 
-{% raw %}
+
 ```django
 {% extends 'blog/blog_base.html' %}
 
@@ -1076,7 +1070,7 @@ Django fornisce solo la logica di autenticazione demandando allo sviluppatore la
 
 {% endblock %}
 ```
-{% endraw %}
+
 La cui implementazione non è molto diversa dal form di editing del post a parte alcune azioni predefinite come l'azione di login e la redirezione alla pagina precedente da cui si era arrivati.
 
 
@@ -1089,7 +1083,6 @@ Il progetto può essere personalizzato e migliorato nella grafica scarna usando 
 
 Solo aggiungendo i css e gli script consigliati da bootstrap la grafica migliora notevolmente:
 
-{% raw %}
 ```django
 {% load static %}
 <html>
@@ -1109,10 +1102,10 @@ Solo aggiungendo i css e gli script consigliati da bootstrap la grafica migliora
     </body>
 </html>
 ```
-{% endraw %}
 
 ---
 
 ## Questa esercitazione
 
 E' disponibile per scaricamento da: [django_miosito.zip](doc/django_miosito.zip)
+{% endraw %}
