@@ -1008,6 +1008,7 @@ ed andiamo ad inserire un link per la modifica nel template `post_detail.html`
 
 Django possiede un sottosistema (*middleware*) che si occupa della gestione dell'autenticazione e dei permessi di accesso alle risorse servite.  Come prima cosa andremo a proteggere le view che danno accesso alle modifiche sul database autorizzando solo gli utenti autenticati. Qualora l'utente corrente non sia autenticato si verrà ridirezionati su una form di login. Modifichiamo blog/views.py importando il modulo necessario e modifichiamo le viste da proteggere
 
+{% raw %}
 ```python
 from django.contrib.auth.decorators import login_required
 ....
@@ -1017,6 +1018,7 @@ def post_new(request):
 @login_required
 def post_edit(request):
 ```
+{% endraw %}
 
 Il decoratore `@login_required` permette l'accesso agli utenti autenticati e redireziona gli utenti anonimi su `/accounts/login/` negando la pagina con il form di editing.
 
