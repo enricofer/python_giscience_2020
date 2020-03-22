@@ -732,7 +732,7 @@ Per saperne di più: [CSS Selectors in w3schools](http://www.w3schools.com/cssre
 
 Infine, dobbiamo anche far sapere al nostro template in HTML che abbiamo effettivamente aggiunto un po' di CSS. Apriamo il file `blog/templates/blog/post_list.html` e aggiungiamo la seguente riga di testo:
 
-```django
+```
 {% load static %}
 ```
 
@@ -996,7 +996,7 @@ ed andiamo ad inserire un link per la modifica nel template `post_detail.html`
 
 Django possiede un sottosistema (*middleware*) che si occupa della gestione dell'autenticazione e dei permessi di accesso alle risorse servite.  Come prima cosa andremo a proteggere le view che danno accesso alle modifiche sul database autorizzando solo gli utenti autenticati. Qualora l'utente corrente non sia autenticato si verrà ridirezionati su una form di login. Modifichiamo blog/views.py importando il modulo necessario e modifichiamo le viste da proteggere
 
-```html
+```python
 from django.contrib.auth.decorators import login_required
 ....
 @login_required
