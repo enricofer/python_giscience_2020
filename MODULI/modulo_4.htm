@@ -1,8 +1,8 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
-        <link rel="stylesheet" href="https://revealjs.com/css/theme/black.css">
-        <link rel="stylesheet" href="https://revealjs.com/lib/css/zenburn.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/black.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/zenburn.min.css">
         <script>
 		  if( window.location.search.match( /print-pdf/gi ) ) {
 			var link = document.createElement( 'link' );
@@ -13,6 +13,7 @@
 		  }
 		</script>
         <style>
+
             .reveal .slides {
                 text-align: left;
             }
@@ -52,13 +53,13 @@
                 <section data-markdown="modulo_4.md" data-separator="^\n---\n$" data-separator-vertical="^\n--\n$"></section>
             </div>
         </div>
-        <script src="https://revealjs.com/js/reveal.js"></script>
-        <script src="https://revealjs.com/plugin/markdown/marked.js"></script>
-        <script src="https://revealjs.com/plugin/markdown/markdown.js"></script>
-        <script src="https://revealjs.com/plugin/highlight/highlight.js"></script>
-        <script src="https://revealjs.com/plugin/search/search.js"></script>
-        <script src="https://revealjs.com/plugin/search/zoom.js"></script>
-        <script src="https://revealjs.com/plugin/search/notes.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.8/marked.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/markdown/markdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/search/search.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/zoom/zoom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
 
         <script>
 
@@ -71,6 +72,7 @@
                 transition: 'concave', // default/cube/page/concave/zoom/linear/fade/none
                 backgroundTransition: 'concave', // default/none/slide/concave/convex/zoom
                 viewDistance: 6,
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
                 // parallaxBackgroundImage: 'https://wallpaperscraft.com/image/dark_spots_texture_background_50355_3840x1200.jpg', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'" 'http://betheme.muffingroupsc.netdna-cdn.com/be/parallax/wp-content/uploads/2015/01/home-parallax-section-works.jpg
                 // parallaxBackgroundSize: '5200px 2000px' // CSS syntax, e.g. "2100px 900px"
             });
